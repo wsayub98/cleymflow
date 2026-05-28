@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Http\Repositories;
+
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+
+class UserRepository
+{
+    public static function create(Array $params)
+    {
+        try {
+            DB::beginTransaction();
+
+            $user = User::create($params);
+            DB::commit();
+
+            return [
+                'success' => true,
+                'data' => $user,
+            ];
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return [
+                'success' => false,
+                'error' => $e->getMessage(),
+            ];
+        }
+    }
+}
