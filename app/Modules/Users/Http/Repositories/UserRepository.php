@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Repositories;
+namespace App\Modules\Users\Http\Repositories;
 
-use App\Models\User;
+use App\Modules\Users\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class UserRepository

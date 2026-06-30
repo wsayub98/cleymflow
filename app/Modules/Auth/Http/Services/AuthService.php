@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Modules\Auth\Http\Services;
 
-use App\Http\Repositories\UserRepository;
+use App\Modules\Users\Http\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
-class AuthServices
+class AuthService
 {
     public static function register(array $params)
     {

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Modules\Auth\Http\Controllers;
 
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests\RegisterRequest;
-use App\Http\Services\AuthServices;
+use App\Http\Controllers\Controller;
+use App\Modules\Auth\Http\Requests\LoginRequest;
+use App\Modules\Auth\Http\Requests\RegisterRequest;
+use App\Modules\Auth\Http\Services\AuthService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -14,7 +15,7 @@ class AuthController extends Controller
     /* public function register(RegisterRequest $request) */
     public function register(RegisterRequest $request)
     {
-        $res = AuthServices::register($request->validated());
+        $res = AuthService::register($request->validated());
         if (!$res['success']) abort(400, json_encode('error', $res['error']));
 
         /* abort(200); */
@@ -24,7 +25,7 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        $isAuthenticated = AuthServices::login($request->validated());
+        $isAuthenticated = AuthService::login($request->validated());
         if (!$isAuthenticated) {
             return back()->withErrors([
                 'email' => 'The provided credentials do not match.',

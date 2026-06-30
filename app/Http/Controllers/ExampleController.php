@@ -16,5 +16,4 @@ class ExampleController extends Controller
         $request->validated();
     }
 
-    public function fuckOff() {}
 }
